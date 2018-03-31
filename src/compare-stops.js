@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
 import Header from './header'
-import { firstStop, secondStop, e11 } from './stops'
+import { e11 } from './stops'
 import caretDown from './caret-down.svg'
 
 const Select = styled.select`
@@ -61,10 +61,6 @@ const StopWrapper = styled.div`
   &:last-child {
     padding-left: 16px;
   }
-`
-
-const StopName = styled.div`
-
 `
 
 const StopType = styled.div`
@@ -172,7 +168,7 @@ class CompareStops extends Component {
       )
     })
 
-    const linesList = firstStop.map((stop, index) => {
+    const linesList = e11[0].dayTypes[this.state.dayType].hours.map((stop, index) => {
       return (
         <Line key={index} />
       )
