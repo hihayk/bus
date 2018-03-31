@@ -24,20 +24,12 @@ const Select = styled.select`
   outline: 0;
 `
 
-const Wrapper = styled.div`
-
-`
-
 const TopSection = styled.div`
   background-color: white;
   position: sticky;
   top: 0;
   padding: 16px 24px 0 24px;
   z-index: 1;
-`
-
-const MainSection = styled.div`
-
 `
 
 const HeaderWrapper = styled.div`
@@ -111,11 +103,21 @@ const hoursAndMinutesToMinutes = (hours, minutes) => ((hours * 60) + minutes)
 
 const currentTimeToMinutes = hoursAndMinutesToMinutes(new Date().getHours(), new Date().getMinutes())
 
+const getDayType = () => {
+  if (new Date().getDay() < 6) {
+    return 0
+  }
+  if (new Date().getDay() > 5) {
+    return 1
+  }
+  return 0
+}
+
 class CompareStops extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      dayType: 0,
+      dayType: getDayType(),
       stopLeave: 0,
       stopArrive: 1
     }
@@ -176,18 +178,19 @@ class CompareStops extends Component {
 
     const stopsNames = e11.map((stop, index) => {
       return (
-        <option value={index}>{stop.name}</option>
+        <option key={index} value={index}>{stop.name}</option>
       )
     })
 
     return (
-      <Wrapper>
+      <div>
         <TopSection>
           <HeaderWrapper>
             <Header />
             <Select value={this.state.dayType} onChange={this.handleDayType}>
-              <option value='0'>Días laborales</option>
+              <option value='0'>Día laboral</option>
               <option value='1'>Fin de semana</option>
+              <option value='2'>Día festivo</option>
             </Select>
           </HeaderWrapper>
           <StopsSection>
@@ -208,26 +211,24 @@ class CompareStops extends Component {
           </StopsSection>
         </TopSection>
 
-        <MainSection>
-          <HoursColumns>
-            <HoursColumn >
-              <HoursList>
-                {firstStopList}
-              </HoursList>
-            </HoursColumn>
+        <HoursColumns>
+          <HoursColumn >
+            <HoursList>
+              {firstStopList}
+            </HoursList>
+          </HoursColumn>
 
-            <Lines>
-              {linesList}
-            </Lines>
+          <Lines>
+            {linesList}
+          </Lines>
 
-            <HoursColumn>
-              <HoursList>
-                {secondStopList}
-              </HoursList>
-            </HoursColumn>
-          </HoursColumns>
-        </MainSection>
-      </Wrapper>
+          <HoursColumn>
+            <HoursList>
+              {secondStopList}
+            </HoursList>
+          </HoursColumn>
+        </HoursColumns>
+      </div>
     )
   }
 }

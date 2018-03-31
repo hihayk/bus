@@ -81,6 +81,24 @@ export const e11 = [
           { hour: 21, minute: 0 },
           { hour: 22, minute: 0 }
         ]
+      },
+      {
+        dayTypeName: 'holiday',
+        hours: [
+          { hour: 9, minute: 0 },
+          { hour: 10, minute: 0 },
+          { hour: 11, minute: 0 },
+          { hour: 12, minute: 0 },
+          { hour: 13, minute: 0 },
+          { hour: 15, minute: 0 },
+          { hour: 16, minute: 0 },
+          { hour: 17, minute: 0 },
+          { hour: 18, minute: 0 },
+          { hour: 19, minute: 0 },
+          { hour: 20, minute: 0 },
+          { hour: 21, minute: 0 },
+          { hour: 22, minute: 0 }
+        ]
       }
     ]
   },
@@ -166,6 +184,24 @@ export const e11 = [
           { hour: 21, minute: 49 },
           { hour: 22, minute: 49 }
         ]
+      },
+      {
+        dayTypeName: 'holiday',
+        hours: [
+          { hour: 9, minute: 49 },
+          { hour: 10, minute: 49 },
+          { hour: 11, minute: 49 },
+          { hour: 12, minute: 49 },
+          { hour: 13, minute: 49 },
+          { hour: 15, minute: 49 },
+          { hour: 16, minute: 49 },
+          { hour: 17, minute: 49 },
+          { hour: 18, minute: 49 },
+          { hour: 19, minute: 49 },
+          { hour: 20, minute: 49 },
+          { hour: 21, minute: 49 },
+          { hour: 22, minute: 49 }
+        ]
       }
     ]
   },
@@ -237,6 +273,24 @@ export const e11 = [
         dayTypeName: 'weekend',
         hours: [
           { hour: 8, minute: 55 },
+          { hour: 9, minute: 55 },
+          { hour: 10, minute: 55 },
+          { hour: 11, minute: 55 },
+          { hour: 12, minute: 55 },
+          { hour: 13, minute: 55 },
+          { hour: 15, minute: 55 },
+          { hour: 16, minute: 55 },
+          { hour: 17, minute: 55 },
+          { hour: 18, minute: 55 },
+          { hour: 19, minute: 55 },
+          { hour: 20, minute: 55 },
+          { hour: 21, minute: 55 },
+          { hour: 22, minute: 55 }
+        ]
+      },
+      {
+        dayTypeName: 'holiday',
+        hours: [
           { hour: 9, minute: 55 },
           { hour: 10, minute: 55 },
           { hour: 11, minute: 55 },
