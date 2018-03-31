@@ -115,12 +115,6 @@ const hoursAndMinutesToMinutes = (hours, minutes) => ((hours * 60) + minutes)
 
 const currentTimeToMinutes = hoursAndMinutesToMinutes(new Date().getHours(), new Date().getMinutes())
 
-const linesList = firstStop.map((stop, index) => {
-  return (
-    <Line key={index} />
-  )
-})
-
 class CompareStops extends Component {
   constructor (props) {
     super(props)
@@ -178,6 +172,18 @@ class CompareStops extends Component {
       )
     })
 
+    const linesList = firstStop.map((stop, index) => {
+      return (
+        <Line key={index} />
+      )
+    })
+
+    const stopsNames = e11.map((stop, index) => {
+      return (
+        <option value={index}>{stop.name}</option>
+      )
+    })
+
     return (
       <Wrapper>
         <TopSection>
@@ -193,18 +199,14 @@ class CompareStops extends Component {
               <StopType>SALIDA</StopType>
 
               <Select value={this.state.stopLeave} onChange={this.handleStopLeave} fullWidth>
-                <option value='0'>{e11[0].name}</option>
-                <option value='1'>{e11[1].name}</option>
-                <option value='2'>{e11[2].name}</option>
+                {stopsNames}
               </Select>
             </StopWrapper>
             <StopWrapper>
               <StopType>LLEGADA</StopType>
 
               <Select value={this.state.stopArrive} onChange={this.handleStopArrive} fullWidth>
-                <option value='0'>{e11[0].name}</option>
-                <option value='1'>{e11[1].name}</option>
-                <option value='2'>{e11[2].name}</option>
+                {stopsNames}
               </Select>
             </StopWrapper>
           </StopsSection>
