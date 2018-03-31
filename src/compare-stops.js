@@ -20,7 +20,7 @@ const Select = styled.select`
   ${props => props.fullWidth && `width: 100%;`}
   background-image: url(${caretDown});
   background-repeat: no-repeat;
-  background-position: top 9px right;
+  background-position: top 10px right;
   outline: 0;
 `
 
@@ -81,7 +81,7 @@ const HoursList = styled.div`
 `
 
 const Stop = styled.div`
-  ${props => props.next && 'color: red;'}
+  ${props => props.isNext && 'color: red;'}
 `
 
 const Line = styled.div`
@@ -151,7 +151,7 @@ class CompareStops extends Component {
     const firstStopList = e11[this.state.stopLeave].dayTypes[this.state.dayType].hours.map((stop, index) => {
       const doubleDigitMinute = stop.minute === 0 ? `${stop.minute}0` : (stop.minute > 0 && stop.minute < 10) ? `0${stop.minute}` : stop.minute
       return (
-        <Stop key={index} withLine next={index === indexOfNextBusHourInMinutes}>
+        <Stop key={index} withLine isNext={index === indexOfNextBusHourInMinutes}>
           {stop.hour}
           :
           {doubleDigitMinute}
@@ -176,9 +176,22 @@ class CompareStops extends Component {
       )
     })
 
-    const stopsNames = e11.map((stop, index) => {
+    const stopsMap = e11.map(() => { return null })
+    const stopsAmount = stopsMap.length
+
+    const leaveStopNames = e11.map((stop, index) => {
       return (
-        <option key={index} value={index}>{stop.name}</option>
+        <option key={index} value={index} disabled={index === (stopsAmount - 1)}>
+          {stop.name}
+        </option>
+      )
+    })
+
+    const arriveStopNames = e11.map((stop, index) => {
+      return (
+        <option key={index} value={index} disabled={index <= this.state.stopLeave}>
+          {stop.name}
+        </option>
       )
     })
 
@@ -198,14 +211,14 @@ class CompareStops extends Component {
               <StopType>SALIDA</StopType>
 
               <Select value={this.state.stopLeave} onChange={this.handleStopLeave} fullWidth>
-                {stopsNames}
+                {leaveStopNames}
               </Select>
             </StopWrapper>
             <StopWrapper>
               <StopType>LLEGADA</StopType>
 
               <Select value={this.state.stopArrive} onChange={this.handleStopArrive} fullWidth>
-                {stopsNames}
+                {arriveStopNames}
               </Select>
             </StopWrapper>
           </StopsSection>

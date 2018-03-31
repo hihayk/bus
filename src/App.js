@@ -6,8 +6,8 @@ import CompareStops from './compare-stops'
 const BaseStyles = styled.div`
   font-family: 'IBM Plex Sans', sans-serif;
   color: #546171;
-  font-size: 14px;
-  line-height: 20px;
+  font-size: 16px;
+  line-height: 24px;
   box-sizing: border-box;
 
   * {
