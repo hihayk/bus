@@ -16,9 +16,6 @@ const Header = () => (
       <Arrow src={arrow} />
       Barclona
     </b>
-    <div>
-      Días laborales
-    </div>
   </div>
 )
 
