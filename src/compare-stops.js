@@ -104,7 +104,10 @@ const hoursAndMinutesToMinutes = (hours, minutes) => ((hours * 60) + minutes)
 const currentTimeToMinutes = hoursAndMinutesToMinutes(new Date().getHours(), new Date().getMinutes())
 
 const getDayType = () => {
-  if (new Date().getDay() < 6) {
+  if (new Date().getDay() === 0) {
+    return 1
+  }
+  if (new Date().getDay() < 5) {
     return 0
   }
   if (new Date().getDay() > 5) {
@@ -113,13 +116,20 @@ const getDayType = () => {
   return 0
 }
 
+const minuteToDoubleDigit = (minute) => {
+  return minute === 0 ? `${minute}0` : (minute > 0 && minute < 10) ? `0${minute}` : minute
+}
+
+const stopsMap = e11.map(() => { return null })
+const stopsAmount = stopsMap.length
+
 class CompareStops extends Component {
   constructor (props) {
     super(props)
     this.state = {
       dayType: getDayType(),
       stopLeave: 0,
-      stopArrive: 1
+      stopArrive: stopsAmount - 1
     }
     this.handleDayType = this.handleDayType.bind(this)
     this.handleStopArrive = this.handleStopArrive.bind(this)
@@ -127,19 +137,22 @@ class CompareStops extends Component {
   }
 
   handleDayType (event) {
-    this.setState({dayType: event.target.value})
+    this.setState({ dayType: event.target.value })
   }
 
   handleStopLeave (event) {
-    this.setState({stopLeave: event.target.value})
+    this.setState({ stopLeave: event.target.value })
   }
 
   handleStopArrive (event) {
-    this.setState({stopArrive: event.target.value})
+    this.setState({ stopArrive: event.target.value })
   }
 
   render () {
-    const firstStopInMinutes = e11[this.state.stopLeave].dayTypes[this.state.dayType].hours.map((stop) => {
+    const stopLeaveHours = e11[this.state.stopLeave].dayTypes[this.state.dayType].hours
+    const stopArriveHours = e11[this.state.stopArrive].dayTypes[this.state.dayType].hours
+
+    const firstStopInMinutes = stopLeaveHours.map((stop) => {
       return hoursAndMinutesToMinutes(stop.hour, stop.minute)
     })
 
@@ -148,36 +161,28 @@ class CompareStops extends Component {
     })
 
     const indexOfNextBusHourInMinutes = firstStopInMinutes.indexOf(nextBusHourInMinutes)
-    const firstStopList = e11[this.state.stopLeave].dayTypes[this.state.dayType].hours.map((stop, index) => {
-      const doubleDigitMinute = stop.minute === 0 ? `${stop.minute}0` : (stop.minute > 0 && stop.minute < 10) ? `0${stop.minute}` : stop.minute
+
+    const firstStopList = stopLeaveHours.map((stop, index) => {
       return (
-        <Stop key={index} withLine isNext={index === indexOfNextBusHourInMinutes}>
-          {stop.hour}
-          :
-          {doubleDigitMinute}
+        <Stop key={index} isNext={index === indexOfNextBusHourInMinutes}>
+          {stop.hour}:{minuteToDoubleDigit(stop.minute)}
         </Stop>
       )
     })
 
-    const secondStopList = e11[this.state.stopArrive].dayTypes[this.state.dayType].hours.map((stop, index) => {
-      const doubleDigitMinute = stop.minute === 0 ? `${stop.minute}0` : (stop.minute > 0 && stop.minute < 10) ? `0${stop.minute}` : stop.minute
+    const secondStopList = stopArriveHours.map((stop, index) => {
       return (
         <Stop key={index}>
-          {stop.hour}
-          :
-          {doubleDigitMinute}
+          {stop.hour}:{minuteToDoubleDigit(stop.minute)}
         </Stop>
       )
     })
 
-    const linesList = e11[0].dayTypes[this.state.dayType].hours.map((stop, index) => {
+    const linesList = stopLeaveHours.map((stop, index) => {
       return (
         <Line key={index} />
       )
     })
-
-    const stopsMap = e11.map(() => { return null })
-    const stopsAmount = stopsMap.length
 
     const leaveStopNames = e11.map((stop, index) => {
       return (
