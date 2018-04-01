@@ -30,6 +30,24 @@ const TopSection = styled.div`
   top: 0;
   padding: 16px 24px 0 24px;
   z-index: 1;
+
+  &:after {
+    content: '';
+    display: block;
+    height: 24px;
+    width: 100%;
+    left: 0;
+    background: linear-gradient(rgba(240,241,242,1), rgba(240,241,242,0));
+    position: absolute;
+  }
+`
+
+const BottomShadow = styled.div`
+  height: 24px;
+  width: 100%;
+  background: linear-gradient(rgba(240,241,242,0), rgba(240,241,242,1));
+  position: sticky;
+  bottom: 0;
 `
 
 const HeaderWrapper = styled.div`
@@ -246,6 +264,7 @@ class CompareStops extends Component {
             </HoursList>
           </HoursColumn>
         </HoursColumns>
+        <BottomShadow />
       </div>
     )
   }
