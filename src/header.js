@@ -12,9 +12,9 @@ const Header = () => (
       Horario
     </div>
     <b>
-      E11.1 Mataro
+      E11.1 Mataró
       <Arrow src={arrow} />
-      Barclona
+      Barcelona
     </b>
   </div>
 )
