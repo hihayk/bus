@@ -3,6 +3,8 @@ import styled from 'styled-components'
 import Header from './header'
 import { e11 } from './stops'
 import caretDown from './caret-down.svg'
+import arrowLg from './arrow-lg.svg'
+import rootArrow from './root-arrow.svg'
 
 const Select = styled.select`
   -webkit-appearance: none;
@@ -57,20 +59,25 @@ const HeaderWrapper = styled.div`
 
 const StopsSection = styled.div`
   display: flex;
+  align-items: center;
 `
 
 const StopWrapper = styled.div`
   width: 50%;
   margin: 16px 0;
+`
 
-  &:not(:last-child) {
-    border-right: 1px solid rgba(0, 22, 43, .1);
-    padding-right: 16px;
-  }
+const StopArrow = styled.div`
+  margin-left: 20px;
+  margin-right: 20px;
+`
 
-  &:last-child {
-    padding-left: 16px;
-  }
+const ArrowlG = styled.img`
+  
+`
+
+const RootArrow = styled.img`
+  
 `
 
 const StopType = styled.div`
@@ -105,12 +112,15 @@ const Stop = styled.div`
 const Line = styled.div`
   position: relative;
   width: 24vw;
-  height: 1px;
+  height: 15px;
   display: block;
   left: -12vw;
-  top: 16px;
-  margin: 0 0 31px 0;
-  background-color: rgba(0, 22, 43, .2);
+  top: 8px;
+  margin: 0 0 17px 0;
+  background-image: url(${rootArrow});
+  background-repeat: no-repeat;
+  background-position: center;
+  opacity: .3;
 `
 
 const Lines = styled.div`
@@ -237,6 +247,11 @@ class CompareStops extends Component {
                 {leaveStopNames}
               </Select>
             </StopWrapper>
+
+            <StopArrow>
+              <ArrowlG src={arrowLg} />
+            </StopArrow>
+
             <StopWrapper>
               <StopType>LLEGADA</StopType>
 
