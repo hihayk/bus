@@ -107,20 +107,32 @@ const HoursList = styled.div`
 
 const Stop = styled.div`
   ${props => props.isNext && 'color: red;'}
+
+  @media (min-width: 1000px) {
+    font-size: 48px;
+    line-height: 56px;
+  }
 `
 
 const Line = styled.div`
   position: relative;
-  width: 24vw;
+  width: 16vw;
   height: 15px;
   display: block;
-  left: -12vw;
+  left: -8vw;
   top: 8px;
   margin: 0 0 17px 0;
   background-image: url(${rootArrow});
   background-repeat: no-repeat;
   background-position: center;
   opacity: .3;
+
+  @media (min-width: 1000px) {
+    margin: 0 0 41px 0;
+    top: 20px;
+    width: 40vw;
+    left: -20vw;
+  }
 `
 
 const Lines = styled.div`
